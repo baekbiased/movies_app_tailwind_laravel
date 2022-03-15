@@ -501,8 +501,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-3 {
   margin-top: 0.75rem;
 }
+.mb-24 {
+  margin-bottom: 6rem;
+}
+.mr-8 {
+  margin-right: 2rem;
+}
+.mb-16 {
+  margin-bottom: 4rem;
+}
 .flex {
   display: flex;
+}
+.inline-flex {
+  display: inline-flex;
 }
 .grid {
   display: grid;
@@ -576,6 +588,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 1rem;
   padding-right: 1rem;
 }
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -595,6 +611,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .pt-16 {
   padding-top: 4rem;
@@ -723,6 +743,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 @media (min-width: 1024px) {
+
+  .lg\:w-96 {
+    width: 24rem;
+  }
 
   .lg\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
