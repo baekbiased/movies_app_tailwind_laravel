@@ -19,8 +19,7 @@
                                 @else
                                     <img src="https://via.placeholder.com/50x75" alt="poster" class="w-8">
                                 @endif
-                                    <span class="ml-2">{{ $result['title'] }}</span>
-
+                                <span class="ml-2">{{ $result['title'] }}</span>
                             </a>
                         </li>
                     @endforeach

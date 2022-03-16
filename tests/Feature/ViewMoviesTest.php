@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ViewMoviesTest extends TestCase
@@ -38,6 +39,24 @@ class ViewMoviesTest extends TestCase
         $response->assertSee('Casting Director');
         $response->assertSee('Dwayne Johnson');
     }
+
+    /** @test */
+    public function the_search_dropdown_works_correctly(){
+        Http::fake([
+            'https://api.themoviedb.org/3/search/movie?query=jumanji' => $this->fakeSearchMovies()
+        ]);
+
+        Livewire::test('search-drop-down')
+            ->assertDontSee('jumanji')
+            ->set('search', 'jumanji')
+            ->assertSee('Jumanji');
+    }
+    
+
+
+
+
+
 
     private function fakeSearchMovies()
     {
