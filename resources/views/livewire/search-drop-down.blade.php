@@ -12,6 +12,7 @@
         placeholder="Search"
         @focus="isOpen=true"
         @keydown.escape.window="isOpen=false"
+        @keydown="isOpen=true"
         @keydown.shift.tab="isOpen=false"
     >
 
@@ -24,7 +25,7 @@
     @if(strlen($search) > 2)
         <div
             class="absolute text-sm bg-gray-800 rounded w-64 mt-3 z-50"
-            x-show="isOpen"
+            x-show.transition.opacity="isOpen"
         >
             <ul>
                 @if($searchResults->count() > 0)
