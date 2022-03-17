@@ -10,10 +10,17 @@
         type="text"
         class="bg-gray-800 rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline"
         placeholder="Search"
+        x-ref="search"
         @focus="isOpen=true"
         @keydown.escape.window="isOpen=false"
         @keydown="isOpen=true"
         @keydown.shift.tab="isOpen=false"
+        @keydown.window="
+            if(event.keyCode == 191){
+                event.preventDefault()
+                $refs.search.focus();
+            }
+        "
     >
 
     <div class="absolute top-0">
