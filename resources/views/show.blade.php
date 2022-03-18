@@ -4,21 +4,17 @@
     <div class="container mx-auto px-4">
         <div class="movie-info border-b border-gray-800 flex-col md:flex-row">
             <div class="container mx-auto px-4 py-16 flex">
-                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{ $movie['poster_path'] }}" alt="parasite" class="w-64 lg:w-96" style="width: 24rem">
+                <img src="{{ $movie['poster_path'] }}" alt="parasite" class="w-64 lg:w-96" style="width: 24rem">
                 <div class="md:ml-24">
                     <h2 class="text-4xl font-semibold">{{ $movie['title'] }}</h2>
 
                     <div class="flex flex-wrap items-center text-gray-400 mt-1">
                         <span><svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg></span>
-                        <span class="ml-1">{{ $movie['vote_average'] * 10 . '%' }}</span>
+                        <span class="ml-1">{{ $movie['vote_average'] }}</span>
                         <span class="mx-2">|</span>
-                        <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M, d, Y') }}</span>
+                        <span>{{ $movie['release_date'] }}</span>
                         <span class="mx-2">|</span>
-                        <span>
-                            @foreach($movie['genres'] as $genre)
-                                {{ $genre['name'] }}@if(!$loop->last) , @endif
-                            @endforeach
-                        </span>
+                        <span>{{ $movie['genres'] }}</span>
 
                     </div>
 
@@ -30,13 +26,13 @@
                         <h4 class="text-white font-semibold">Featured Cast</h4>
                         <div class="flex mt-4">
 
-                            @foreach($movie['credits']['crew'] as $crew)
-                                @if($loop->index < 4)
-                                    <div class="mr-8">
-                                        <div>{{ $crew['name'] }}</div>
-                                        <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
-                                    </div>
-                                @endif
+                            @foreach($movie['crew'] as $crew)
+
+                                <div class="mr-8">
+                                    <div>{{ $crew['name'] }}</div>
+                                    <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
+                                </div>
+
                             @endforeach
 
                         </div>
@@ -55,6 +51,7 @@
                             </div>
                         @endif
 
+{{--                        pop-up for play video trailer--}}
                         <div
                             style="background-color: rgba(0, 0, 0, .5);"
                             class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
@@ -89,9 +86,10 @@
 
                 <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-16">
 
-                    @foreach($movie['credits']['cast'] as $cast)
-                        @if($loop->index < 5)
-                            <div class="mt-8">
+                    @foreach($movie['cast'] as $cast)
+
+                        <div class="mt-8">
+
                             <a href="#">
                                 <img src="https://image.tmdb.org/t/p/w300/.{{ $cast['profile_path'] }}" alt="actor1" class="hover:opacity-75 transition ease-in-out duration-150">
                             </a>
@@ -101,8 +99,8 @@
                                     <span>{{ $cast['character'] }}</span>
                                 </div>
                             </div>
-                        @endif
-                    </div>
+
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -115,22 +113,23 @@
 
                 <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
 
-                    @foreach($movie['images']['backdrops'] as $backdrop)
-                        @if($loop->index < 6)
-                            <div class="mt-8">
-                                <a
-                                    href="#"
-                                    @click.prevent= "
-                                        isOpen = true
-                                        image = 'https://image.tmdb.org/t/p/original/.{{ $backdrop['file_path'] }}'
-                                    "
-                                >
-                                    <img src="https://image.tmdb.org/t/p/w500/.{{ $backdrop['file_path'] }}" alt="actor1" class="hover:opacity-75 transition ease-in-out duration-150">
-                                </a>
-                            </div>
-                        @endif
+                    @foreach($movie['backdrops'] as $backdrop)
+
+                        <div class="mt-8">
+                            <a
+                                href="#"
+                                @click.prevent= "
+                                    isOpen = true
+                                    image = 'https://image.tmdb.org/t/p/original/.{{ $backdrop['file_path'] }}'
+                                "
+                            >
+                                <img src="https://image.tmdb.org/t/p/w500/.{{ $backdrop['file_path'] }}" alt="actor1" class="hover:opacity-75 transition ease-in-out duration-150">
+                            </a>
+                        </div>
+
                     @endforeach
 
+{{--                    pop up for image        --}}
                     <div
                         style="background-color: rgba(0, 0, 0, .5);"
                         class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
