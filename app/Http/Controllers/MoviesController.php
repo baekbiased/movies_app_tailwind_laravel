@@ -30,7 +30,7 @@ class MoviesController extends Controller
             $nowPlaying,
             $genres
         );
-        return view("index", $viewModel);
+        return view("movies.index", $viewModel);
 
     }
 
@@ -44,7 +44,7 @@ class MoviesController extends Controller
             $movie,
         );
 
-        return view("show", $viewModel);
+        return view("movies.show", $viewModel);
     }
 
     public function create()
