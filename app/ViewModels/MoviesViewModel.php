@@ -41,7 +41,7 @@ class MoviesViewModel extends ViewModel
             })->implode(', ');
 
             return collect($movie)->merge([
-                'poster_path' => 'https://image.tmdb.org/t/p/w220_and_h330_face/'.$movie['poster_path'],
+                'poster_path' => 'https://www.themoviedb.org/t/p/w220_and_h330_face/'.$movie['poster_path'],
                 'vote_average' => $movie['vote_average'] * 10 . '%',
                 'release_date' => Carbon::parse($movie['release_date'])->format('M, d, Y'),
                 'genres' => $genresFormatted,
