@@ -36,9 +36,9 @@ class MoviesViewModel extends ViewModel
 
         return collect($movies)->map(function($movie){
 
-            $genresFormatted = collect($movie['genre_ids'])->mapWithKeys(function ($value){
-                return [$value => $this->genres()->get($value)];
-            })->implode(', ');
+                $genresFormatted = collect($movie['genre_ids'])->mapWithKeys(function ($value){
+                    return [$value => $this->genres()->get($value)];
+                })->implode(', ');
 
             return collect($movie)->merge([
                 'poster_path' => 'https://www.themoviedb.org/t/p/w220_and_h330_face/'.$movie['poster_path'],
